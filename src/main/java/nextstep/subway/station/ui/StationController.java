@@ -1,8 +1,11 @@
 package nextstep.subway.station.ui;
 
+import nextstep.subway.common.logging.Logging;
 import nextstep.subway.station.application.StationService;
 import nextstep.subway.station.dto.StationRequest;
 import nextstep.subway.station.dto.StationResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,14 +14,17 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
+
 @RestController
 public class StationController {
+    private static final Logger logger = LoggerFactory.getLogger(StationController.class);
     private StationService stationService;
 
     public StationController(StationService stationService) {
         this.stationService = stationService;
     }
 
+    @Logging(description = "역 생성")
     @PostMapping("/stations")
     public ResponseEntity<StationResponse> createStation(@RequestBody StationRequest stationRequest) {
         StationResponse station = stationService.saveStation(stationRequest);
