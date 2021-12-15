@@ -12,16 +12,12 @@ import java.net.URI;
 import java.util.List;
 import java.util.function.IntUnaryOperator;
 import java.util.stream.IntStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/lines")
 public class LineController {
 
     private final LineService lineService;
-    private static final Logger log = LoggerFactory.getLogger(LineController.class);
-    private static final Logger fileLogger = LoggerFactory.getLogger("file");
 
     public LineController(final LineService lineService) {
         this.lineService = lineService;
@@ -35,8 +31,6 @@ public class LineController {
 
     @GetMapping
     public ResponseEntity<List<LineResponse>> findAllLines() {
-        log.error("An ERROR Message");
-        fileLogger.info("파일 로깅 입니다.");
         return ResponseEntity.ok(lineService.findLineResponses());
     }
 
@@ -84,7 +78,6 @@ public class LineController {
     public String findLockLeft() throws InterruptedException {
 
         synchronized (left) {
-            Thread.sleep(5000);
             synchronized (right) {
                 System.out.println("left");
             }
@@ -95,7 +88,6 @@ public class LineController {
     @GetMapping("/lock-right")
     public String findLockRight() throws InterruptedException {
         synchronized (right) {
-            Thread.sleep(5000);
             synchronized (left) {
                 System.out.println("right");
             }
@@ -107,7 +99,6 @@ public class LineController {
     public String generateStreams() {
         double value = 0;
         IntStream.of(100).parallel().map(extracted(value));
-        extracted(value);
         return "ok";
     }
 
