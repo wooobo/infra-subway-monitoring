@@ -43,16 +43,21 @@ npm run dev
 
 ### 1단계 - 인프라 운영하기
 1. 각 서버내 로깅 경로를 알려주세요
-
+- 외부망 : `Name : EC2-wooobo-web-service`
+  - log 위치 : /home/ubuntu/infra-subway-monitoring/log
+  - 로그 그룹 :
+- 프록시 서버 : `Name : EC2-wooobo-proxy`
+  - log 위치 /var/log/nginx
+  - 로그 그룹 : [wooobo-proxy](https://ap-northeast-2.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-2#logsV2:log-groups/log-group/wooobo-proxy)
 2. Cloudwatch 대시보드 URL을 알려주세요
 
 #### 1단계 미션
 
-- [ ] Application Log 파일로 저장하기
-  - [ ] 회원가입 이벤트 로깅
-  - [ ] 로그인 이벤트 로깅 
-  - [ ] 최단거리 조회 이벤트 로깅
-- [ ] Nginx Access Log 설정하기
+- [X] Application Log 파일로 저장하기
+    - [X] 회원가입 이벤트 로깅
+    - [X] 로그인 이벤트 로깅
+    - [X] 최단거리 조회 이벤트 로깅
+- [X] Nginx Access Log 설정하기
 - [ ] Cloudwatch로 로그 수집하기
 - [ ] Cloudwatch로 메트릭 수집하기
 
