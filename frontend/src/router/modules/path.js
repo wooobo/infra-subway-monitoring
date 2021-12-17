@@ -1,9 +1,7 @@
-import PathPage from '../../views/path/PathPage'
-
 const pathRoutes = [
   {
     path: '/path',
-    component: PathPage
+    component: () => import(/* webpackChunkName: "PathPage" */ '@/views/path/PathPage')
   }
 ]
 export default pathRoutes
